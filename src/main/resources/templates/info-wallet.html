@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>Кошелёк</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Ваш кошелёк</h1>
+<form th:action="@{/wallet/transact}" th:object="${userWallet}" method="POST">
+    <div style="margin: 10px 20px;">
+        <div th:if="${userWallet.moneyRUB != 0}" th:text="'RUB = ' + ${userWallet.moneyRUB}"/>
+        <div th:if="${userWallet.moneyUSD != 0}" th:text="'USD = ' + ${userWallet.moneyUSD}"/>
+        <div th:if="${userWallet.moneyEUR != 0}" th:text="'EUR = ' + ${userWallet.moneyEUR}"/>
+        <div th:if="${userWallet.moneyUAN != 0}" th:text="'UAN = ' + ${userWallet.moneyUAN}"/>
+        <div th:if="${userWallet.moneyFRN != 0}" th:text="'FRN = ' + ${userWallet.moneyFRN}"/>
+    </div>
+    <div style="margin: 10px 20px;">
+        <input style="width: 120px" type="number" min="0" placeholder="100" value="100" name="walletAmount">
+        <input style="width: 60px" type="text" placeholder="RUB" name="walletIn">
+        <span style="margin: 0 6px">--></span>
+        <input style="width: 60px" type="text" placeholder="USD" name="walletOut">
+        <button style="margin: 0 10px; border-radius: 4px" type="submit">Перевести</button>
+    </div>
+    <span style="border: solid; margin: 5px; padding: 3px">RUB, USD, EUR, UAN, FRN</span>
+</form>
+<br>
+<span style="border-radius: 12px; padding: 10px 25px; background-color: #e7e7e7; text-align: center"><a href="/wallet/deposit">Пополнить кошелёк</a></span>
+<span style="border-radius: 12px; padding: 10px 25px; background-color: #e7e7e7; text-align: center"><a href="/wallet/withdraw">Вывести средства</a></span>
+<br>
+<br>
+<a href="/">Главная</a>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8"/>
+  <title>Вход</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>UserName</th>
+      <th>Password</th>
+      <th>Roles</th>
+      <th>RUB</th>
+      <th>USD</th>
+      <th>EUR</th>
+      <th>FRN</th>
+      <th>UAN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${allUsers}">
+      <td th:text="${user.id}"/>
+      <td th:text="${user.username}"/>
+      <td th:text="${user.password}"/>
+      <td>
+        <span th:each="role : ${user.roles}" th:text="${role.name}+'; '"/>
+      </td>
+      <td>
+      <td th:text="${user.moneyRUB} + ' RUB'"/>
+      <td th:text="${user.moneyUSD} + ' USD'"/>
+      <td th:text="${user.moneyEUR} + ' EUR'"/>
+      <td th:text="${user.moneyFRN} + ' FRN'"/>
+      <td th:text="${user.moneyUAN} + ' UAN'"/>
+      </td>
+      <td>
+        <a th:href="@{'/admin/delete/' + ${user.id}}" th:text="DELETE"/>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/">Главная</a>
+</div>
+</body>
+</html>
